@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block page %}
+<form method="post">
+    <div>Article ID</div>
+    <input name="article_id">
+    <div>Comment ID</div>
+    <input name="comment_id">
+    <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+    <button type="submit">Execute</button>
+</form>
+{% with responses = get_flashed_messages() %}
+    {% if responses %}
+        {% for response in responses %}
+            {{response}}
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+{% endblock %}

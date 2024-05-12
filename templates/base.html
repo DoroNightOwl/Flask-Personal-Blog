@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/static/base.css">
+        <link rel="stylesheet" type="text/css" href="/static/style.css">
+    </head>
+    <body>
+        <div class="header_container">
+            <div class="banner"></div>
+            <div class="navigation_menu">
+                <div class="navigation_left_buttons">
+                    <a href="/list_articles"><button class="menu_button">Home</button></a>
+                    <a href="/search_article"><button class="menu_button">Search</button></a>
+                </div>
+                <div class="navigation_right_buttons">
+                    {% if user %}
+                        <a href="/logout"><button class="menu_button">Logout</button></a>
+                    {% else %}
+                        <a href="/login"><button class="menu_button">Login</button></a>
+                        <a href="/register"><button class="menu_button">Register</button></a>
+                    {% endif %}
+                    {% if is_owner == True %}
+                        <a href="/create_article"><button class="menu_button">Create</button></a>
+                        <a href="/owner_panel"><button class="menu_button">Panel</button></a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="shadow"></div>
+        <div class="page">
+        {% block page %}
+        {% endblock %}
+        </div>
+    </body>
+</html>

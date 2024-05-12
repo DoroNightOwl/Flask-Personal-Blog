@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block page %}
+<div class="text_style_one"
+     style="text-align: center; margin-top: 1rem;">Home</div>
+{% if requested_articles %}
+<div class="text_style_two"
+     style="text-align: center; margin-bottom: 1rem;">Here you can see the latest articles !</div>
+{% else %}
+<div class="text_style_two"
+     style="text-align: center; margin-bottom: 1rem;">It would seem this blog is empty !</div>
+{% endif %}
+{% with responses = get_flashed_messages() %}
+     {% if responses %}
+         {% for response in responses %}
+             <div class="text_style_two margin_top_bottom_type_one",
+                  style="text-align: center;">
+                     {{response}}
+             </div>
+         {% endfor %}
+     {% endif %}
+{% endwith %}
+<div class="grid_type_one margin_center_align">
+{% if requested_articles %}
+{% for requested_article in requested_articles %}
+    <a href="/articles/view_article/{{requested_article[0]}}">
+        <div class="box_style_one",
+             style="height: 18rem;">
+            <div>
+                <div class="text_style_three">Creation date : {{requested_article[2]}}</div>
+                <div class="text_style_three">Creation time : {{requested_article[3]}}</div>
+                <div class="text_style_three"
+                     style="margin-bottom: 1rem;">Total views : {{requested_article[4]}}</div>
+            </div>
+            <image class="image_style margin_center_align"
+                   style="width: 80%; height: 8rem;" src="/static/article_images/{{requested_article[0]}}.jpg"></image>
+            <div class="text_style_one text_one_line_preview"
+                 style="margin-top: 1rem;">{{requested_article[1]}}</div>
+        </div>
+    </a>
+{% endfor %}
+{% endif %}
+</div>
+</div>
+
+{% endblock %}

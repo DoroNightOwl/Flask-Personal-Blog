@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block page %}
+<div class="text_style_one"
+     style="text-align: center; margin-top: 1rem;">Edit Existing Article</div>
+<div class="text_style_two"
+     style="text-align: center; margin-bottom: 1rem;">ID : {{requested_article[0]}}</div>
+<form class="flex_column box_style_one margin_center_align"
+      style="width: 32rem; gap: 0.5rem;" method="post" enctype="multipart/form-data">
+    <div>Article title : </div>
+    <input class="input_style" name="article_title" value="{{requested_article[1]}}">
+    <div>Content title : </div>
+    <textarea class="input_style" 
+              style="max-width: 100%; height: 16rem;" name="article_content">{{requested_article[5]}}</textarea>
+    <input type="hidden" name ="csrf_token" value="{{csrf_token()}}">
+    <div></div>
+    <button class="button_style_one margin_center_align"
+            style="margin-top: 0.5rem;" type="submit">Submit</button>
+</form>
+{% with responses = get_flashed_messages() %}
+    {% if responses %}
+        <div class="text_style_two margin_top_bottom_type_one",
+             style="text-align: center;">
+            {% for response in responses %}
+                    <div>{{response}}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+{% endblock %}

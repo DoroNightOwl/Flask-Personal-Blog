@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block page %}
+{% with responses = get_flashed_messages() %}
+    {% if responses %}
+        {% for response in responses %}
+            <div class="text_style_two margin_top_bottom_type_one",
+                 style="text-align: center;">
+                {{response}}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<div class="text_style_one"
+     style="text-align: center; margin-top: 1rem;">Full Article</div>
+<div class="text_style_two"
+     style="text-align: center; margin-bottom: 1rem;">ID : {{requested_article[0]}}</div>
+{% if user %}
+    {% if is_owner == True %}
+    <div>
+        <div class="flex_row"
+             style="justify-content: center; gap: 1rem;">
+            <a href="/edit_article/{{requested_article[0]}}">
+                <button class="button_style_one">Edit</button>
+            </a>
+            <a href="/delete_article/{{requested_article[0]}}">
+                <button class="button_style_one">Delete</button>
+            </a>
+        </div>
+    </div>
+    {% endif %}
+{% endif %}
+<div class="box_style_two margin_center_align margin_top_bottom_type_one" 
+     style="width: 60%;">
+    {% if requested_article %}
+        <div class="text_style_two">Creation date : {{requested_article[2]}}</div>
+        <div class="text_style_two">Creation time : {{requested_article[3]}}</div>
+        <div class="text_style_two"
+             style="margin-bottom: 1rem;">Total views : {{requested_article[4]}}</div>
+        <div class="text_style_one"
+             style="margin-bottom: 1rem;">{{requested_article[1]}}</div>
+        <image class="image_style"
+               style="width: 20rem; margin-bottom: 1rem;" 
+               src="/static/article_images/{{requested_article[0] | default('test')}}.jpg">
+        </image>
+        <div class="text_format">{{requested_article[5] | safe}}</div>
+    {% endif %}
+</div>
+<form class="box_style_one margin_center_align margin_top_bottom_type_one"
+      style="width: 60%;" 
+      method="post">
+    {% if user %}
+        <div class="text_style_four"
+            style="text-align: center; margin-bottom: 1rem;">
+            Create Comment</div>
+        <textarea class="input_style margin_center_align"
+                style="width: 80%; max-width: 80%;" 
+                name="comment_content"></textarea>
+        <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+        <button class="button_style_one margin_center_align"
+                style="margin-top: 1rem;"
+                type="submit">
+                submit</button>
+    {% else %}
+        <div class="text_style_one"
+             style="text-align: center;">You must be logged in to comment !</div>
+    {% endif %}
+</form>
+{% if requested_comments %}
+    {% for requested_comment in requested_comments %}
+    <div class="box_style_two margin_top_bottom_type_one margin_center_align"
+         style="width: 60%;">
+        {% if is_owner == True %}
+            <div class="text_style_two">ID : {{requested_comment[0]}}</div>
+        {% endif %}
+        <div class="text_style_two">Creation date : {{requested_comment[2]}}</div>
+        <div class="text_style_two">Creation time : {{requested_comment[3]}}</div>
+        <div class="text_style_four margin_top_bottom_type_one">Author : {{requested_comment[1]}}</div>
+        <div class="text_format">{{requested_comment[5]}}</div>
+        {% if is_owner == True %}
+            <div style="height: 2.25rem; position: relative ">
+                <a href="/article/{{requested_article[0]}}/delete_comment/{{requested_comment[0]}}">
+                    <button class="button_style_one"
+                            style="position: absolute; right: 0; bottom: 0;">
+                            DELETE</button>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+{% endif %}
+{% endblock %}

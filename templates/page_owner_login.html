@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block page %}
+<form method="post">
+    <div>Username</div>
+    <input name="owner_username">
+    <div>Password</div>
+    <input name="owner_password">
+    <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+    <button>Activate Owner Rights In This Session</button>
+</form>
+{% endblock %}

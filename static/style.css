@@ -1,0 +1,154 @@
+@import url(variables.css);
+
+/* __________________________________ */
+/* Style classes */
+/* __________________________________ */
+.box_style_one {
+    background: var(--tertiary_color);
+    padding: 1rem;
+    box-shadow: 0 0 0.25rem;
+}
+
+.box_style_two {
+    position: relative;
+    background: white;
+    padding: 2rem;
+    box-shadow: 0 0 0.25rem;
+}
+
+.input_style {
+    display: block;
+    border: 0.125rem solid black;
+    background: white;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+}
+
+.button_style_one {
+    display: block;
+    color: var(--primary_color);
+    background: var(--secondary_color);
+    border: 0.125rem solid var(--primary_color);
+    border-radius: 0.25rem;
+    width: 6.75rem;
+    height: 2.25rem;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+}
+.button_style_one:hover {
+    font-size: 1.2rem;
+}
+.text_style_one {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: black;
+}
+.text_style_two {
+    font-size: 1rem;
+    font-weight: bold;
+    color: grey;
+}
+.text_style_three {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: black;
+}
+.text_style_four {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: grey;
+}
+.text_style_four {
+    font-size: 1rem;
+    font-weight: bold;
+    color: black
+}
+/* __________________________________ */
+/* Layout classes */
+/* __________________________________ */
+.flex_column {
+    display: flex;
+    flex-direction: column;
+}
+.flex_row {
+    display: flex;
+    flex-direction: row;
+}
+.grid_type_one {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    gap: 1rem;
+    width: 70%;
+}
+.image_style {
+    display: block;
+    border: 0.125rem solid black;
+    background: white;
+    padding: 0.125rem;
+    object-fit: cover;
+}
+/* Margin classes */
+.margin_center_align {
+    margin-left: auto;
+    margin-right: auto;
+}
+.margin_top_bottom_type_one{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.text_center_align {
+    text-align: center;
+}
+/* Others */
+.grid_element {
+    min-width: 100%;
+    width: 100%;
+    max-width: 100%;
+}
+.text_one_line_preview {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; 
+    -webkit-box-orient: vertical;
+    line-height: 1.25;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+}
+/* __________________________________ */
+/* Unique element : Search bar */
+/* __________________________________ */
+#search_elements_container {
+    border: 0.125rem solid black;
+    border-radius: 0.25rem;
+    overflow: hidden;
+    width: 24rem;
+}
+#search_input {
+    outline: none;
+    border: none;
+    background: white;
+    width: 70%;
+    height: 2rem;
+    padding: 0.5rem;
+}
+#search_input:hover {outline: none;}
+#search_button {
+    height: 2rem;
+    width: 30%;
+    color: var(--primary_color);
+    background: var(--secondary_color);
+    border: none;
+    border-left: 0.125rem solid var(--primary_color);
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+}
+#search_button:hover {font-size: 1.2rem;}
+
+
+.text_format {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    word-break: break-word;
+}

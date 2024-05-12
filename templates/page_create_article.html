@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block page %}
+<div class="text_style_one"
+     style="text-align: center; margin-top: 1rem;">
+     Create Article</div>
+<div class="text_style_two"
+     style="text-align: center; margin-bottom: 1rem;">
+     You can use HTML to style your article's appearence.</div>
+<form class="flex_column box_style_one margin_center_align"
+      style="width: 32rem; gap: 0.5rem;" method="post" enctype="multipart/form-data">
+    <div>Article poster : </div>
+    <label for="article_poster">Upload poster</label>
+    <input class="input_style" type="file" name="article_poster" id="article_poster" style="display:none">
+    <div>Article title : </div>
+    <input class="input_style"name="article_title">
+    <div>Content title : </div>
+    <textarea class="input_style" 
+              style="max-width: 100%; height: 16rem;" name="article_content"></textarea>
+    <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+    <button class="button_style_one margin_center_align"
+            style="margin-top: 0.5rem;" type="submit">Submit</button>
+</form>
+
+{% with responses = get_flashed_messages() %}
+    {% if responses %}
+        {% for response in responses %}
+            <div class="text_style_two margin_top_bottom_type_one",
+                 style="text-align: center;">
+                    {{response}}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+{% endblock %}

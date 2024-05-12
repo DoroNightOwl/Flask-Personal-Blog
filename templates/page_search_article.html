@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block page %}
+<div class="text_style_one"
+     style="text-align: center; margin-top: 1rem;">Search Article</div>
+<div class="text_style_two"
+     style="text-align: center; margin-bottom: 1rem;">For better results, use descriptive keywords !</div>
+<form class="margin_center_align" id="search_elements_container" method="post">
+    <div class="flex_row">
+        <input id="search_input" placeholder="Search by word..." name="search_criteria" required>
+        <button id="search_button" type="submit">SEARCH</button>
+    </div>
+    <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+</form>
+<div class="text_style_two margin_top_bottom_type_one",
+     style="text-align: center;">
+        {{response}}
+</div>
+{% if searched_articles %}
+    {% for searched_article in searched_articles %}
+        <div class="box_style_one margin_center_align margin_top_bottom_type_one"
+             style="width: 70%;">
+            <div>Creation date : {{searched_article[2]}}</div>
+            <div>Creation time : {{searched_article[3]}}</div>
+            <div>Total views : {{searched_article[4]}}</div>
+            <div>{{searched_article[1]}}</div>
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}
