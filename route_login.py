@@ -29,7 +29,6 @@ def login():
         query = "SELECT * FROM users WHERE username=?"
         cursor.execute(query,(username,))
         requested_user = cursor.fetchone()
-        print("FUCKTHARD " , requested_user)
         if requested_user == None :
             flash(f'Account with username "{username}" does not exist !')
             return redirect("/login")
